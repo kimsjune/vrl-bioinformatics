@@ -1,3 +1,3 @@
 # Intro
 Bioinformatics club.  
-See `commands.txt` for various scripts I will use. 
+See `commands.sh` for various scripts I will use. 
