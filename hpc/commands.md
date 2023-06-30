@@ -155,7 +155,8 @@ chmod +x loop_align.sh
 
 ### unlike `cat` commands above, the aligning job should be submitted to slurm
 This is because it will take too long.  
-We need to add the following `SBATCH` lines to `alignAll.sh`. Remember that this is the actual `STAR` command file.
+We need to add the following `SBATCH` lines to `alignAll.sh`. Remember that this is the actual `STAR` command file.  
+Then submit by `sbatch --account=$ACC alignAll.sh`. 
 
 ```bash
 #!/bin/bash
