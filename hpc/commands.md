@@ -219,7 +219,7 @@ We want to see high overall mapping rates _and_ unique mapping rates.
 head -n 100 ./sam/NTC_D1Aligned.out.sam
 ```
 
-### for `htseq-count`, we don't need to bother converting .sam to sorted .bam file, so we can go straight to _counting_.  
+### for `htseq-count` and single-end libraries, we don't need to bother converting .sam to sorted .bam file, so we can go straight to _counting_.  
 We (`htseq-count` program) are _counting_ how many reads align to exons of a given gene in our annotation file (.gtf)  
 To use this program we need to install HTSeq, which is a python program. This is slightly different to `module load`.
 
@@ -232,6 +232,7 @@ htseq-count --version
 ```
 ### htseq-count command and batch job submission script
 
+I think it's better to use `-i gene_name` instead of the default `gene_id`.
 ```bash
 #!/bin/bash
 #SBATCH --account=def-fdick
