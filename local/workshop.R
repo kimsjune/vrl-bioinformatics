@@ -2,12 +2,8 @@
 if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 BiocManager::install(version = "3.17")
-BiocManager::install("edgeR")
-BiocManager::install("RColorBrewer")
-BiocManager::install("org.Mm.eg.db")
-BiocManager::install("AnnotationDbi")
-BiocManager::install("svglite")
-BiocManager::install('EnhancedVolcano')
+BiocManager::install(c("edgeR","RColorBrewer","org.Mm.eg.db","AnnotationDbi","svglite","EnhancedVolcano"))
+
 
 
 
@@ -19,10 +15,8 @@ library(org.Mm.eg.db)
 library(AnnotationDbi)
 library(EnhancedVolcano)
 
-
 #import read counts####
 
-setwd("./../staralignmm10/csv")
 ND1<-read.delim("NTC_D1.csv",header=F)
 ND2<-read.delim("NTC_D2.csv",header=F)
 ND3<-read.delim("NTC_D3.csv",header=F)
@@ -51,7 +45,7 @@ RG3<-read.delim("RIG_G3.csv",header=F)
 
 #
 #Make a dataframe of all read count tables
-counts.org<- data.frame(
+counts.org <- data.frame(
   row.names=gsub("\\..*","",ND1[,1]),
   ND1=ND1[,2],ND2=ND2[,2],ND3=ND3[,2],NG1=NG1[,2],NG2=NG2[,2],NG3=NG3[,2],
   DD1=DD1[,2],DD2=DD2[,2],DD3=DD3[,2],DG1=DG1[,2],DG2=DG2[,2],DG3=DG3[,2],
@@ -334,4 +328,3 @@ write.table(cpm_RIG.GvD,file="cpm_RIG.GvD.txt",quote=F,sep="\t")
 b.target.not.removed<-DGEList(counts=b.counts, group=group)
 b.target.not.removed<- calcNormFactors(b.target.not.removed)
 cpm(b.target.not.removed)[c("ENSMUSG00000026896","ENSMUSG00000040296","ENSMUSG00000032344"),]
-
